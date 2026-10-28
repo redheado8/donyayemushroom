@@ -33,9 +33,9 @@ export default function Hero({ onShop, onOrder }: { onShop: () => void; onOrder:
         </span>
       </div>
 
-      <div className="relative mx-auto flex min-h-[88svh] max-w-5xl flex-col items-center justify-center px-5 pb-28 pt-28 text-center md:px-10 md:pt-32">
+      <div className="relative mx-auto grid min-h-[100svh] max-w-7xl grid-cols-1 items-center gap-6 px-5 pb-28 pt-28 md:grid-cols-2 md:px-10 md:pt-32">
         {/* copy */}
-        <motion.div style={{ y: yText, opacity }} className="relative z-10 w-full">
+        <motion.div style={{ y: yText, opacity }} className="relative z-10 w-full text-right md:col-start-1">
           <motion.div variants={fadeUp} initial="hidden" animate="show" custom={0.05}>
             <span className="inline-flex items-center gap-2 rounded-full border border-gold/40 bg-white/5 px-4 py-1.5 text-xs font-medium tracking-wide text-gold-light backdrop-blur">
               <Sparkles className="h-3.5 w-3.5" />
