@@ -1,9 +1,7 @@
-import { Suspense, lazy, useEffect, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowLeft, Award, Leaf, MapPin, Sparkles, Star } from "lucide-react";
 import { SHOP } from "../data/products";
 
-const MushroomScene = lazy(() => import("./MushroomScene"));
 
 const fadeUp = {
   hidden: { opacity: 0, y: 34 },
@@ -15,16 +13,10 @@ const fadeUp = {
 };
 
 export default function Hero({ onShop, onOrder }: { onShop: () => void; onOrder: () => void }) {
-  const [ready, setReady] = useState(false);
   const { scrollY } = useScroll();
   const yBg = useTransform(scrollY, [0, 700], [0, 120]);
   const yText = useTransform(scrollY, [0, 700], [0, 60]);
   const opacity = useTransform(scrollY, [0, 520], [1, 0]);
-
-  useEffect(() => {
-    const t = window.setTimeout(() => setReady(true), 350);
-    return () => window.clearTimeout(t);
-  }, []);
 
   return (
     <header id="home" className="grain relative min-h-[100svh] overflow-hidden bg-forest text-bone">
@@ -42,9 +34,9 @@ export default function Hero({ onShop, onOrder }: { onShop: () => void; onOrder:
         </span>
       </div>
 
-      <div className="relative mx-auto grid max-w-7xl gap-6 px-5 pb-28 pt-28 md:grid-cols-2 md:items-center md:px-10 md:pt-32 lg:min-h-[100svh]">
+      <div className="relative mx-auto grid max-w-5xl gap-6 px-5 pb-28 pt-28 md:items-center md:px-10 md:pt-32 lg:min-h-[100svh]">
         {/* copy */}
-        <motion.div style={{ y: yText, opacity }} className="relative z-10 order-2 md:order-1">
+        <motion.div style={{ y: yText, opacity }} className="relative z-10 mx-auto w-full max-w-4xl">
           <motion.div variants={fadeUp} initial="hidden" animate="show" custom={0.05}>
             <span className="inline-flex items-center gap-2 rounded-full border border-gold/40 bg-white/5 px-4 py-1.5 text-xs font-medium tracking-wide text-gold-light backdrop-blur">
               <Sparkles className="h-3.5 w-3.5" />
@@ -138,67 +130,6 @@ export default function Hero({ onShop, onOrder }: { onShop: () => void; onOrder:
           </motion.div>
         </motion.div>
 
-        {/* 3D */}
-        <div className="relative order-1 h-[46svh] md:order-2 md:h-[72vh]">
-          {/* poster behind canvas while it loads */}
-          <div className="absolute inset-0 flex items-center justify-center">
-            <img
-              src="/images/hero-mushroom.jpg"
-              alt="قارچ سه‌بعدی دنیای قارچ"
-              className={`h-full w-full object-contain transition-opacity duration-1000 ${ready ? "opacity-0" : "opacity-90"}`}
-              loading="eager"
-            />
-          </div>
-
-          <motion.div
-            initial={{ opacity: 0, scale: 0.94 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1.4, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            className="absolute inset-0"
-          >
-            {ready && (
-              <Suspense fallback={null}>
-                <MushroomScene />
-              </Suspense>
-            )}
-          </motion.div>
-
-          {/* floating chips */}
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 1.1, duration: 0.8 }}
-            className="absolute right-2 top-10 animate-float rounded-2xl border border-white/15 bg-white/10 px-4 py-3 shadow-xl backdrop-blur-md md:right-6"
-          >
-            <p className="text-[11px] text-bone/60">برداشت امروز</p>
-            <p className="text-sm font-extrabold text-gold-light">قارچ دکمه‌ای ممتاز</p>
-          </motion.div>
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 1.3, duration: 0.8 }}
-            className="absolute bottom-12 left-2 animate-float-slow rounded-2xl border border-white/15 bg-white/10 px-4 py-3 shadow-xl backdrop-blur-md md:left-8"
-          >
-            <div className="flex items-center gap-1">
-              {Array.from({ length: 5 }).map((_, i) => (
-                <Star key={i} className="h-3 w-3 fill-gold text-gold" />
-              ))}
-            </div>
-            <p className="mt-1 text-xs font-bold text-bone">تضمین تازگی و کیفیت</p>
-          </motion.div>
-
-          {/* drag hint */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1.8 }}
-            className="absolute bottom-2 left-1/2 hidden -translate-x-1/2 items-center gap-2 rounded-full border border-white/10 bg-black/30 px-4 py-1.5 text-[11px] text-bone/60 backdrop-blur md:inline-flex"
-            dir="ltr"
-          >
-            <span className="inline-block h-1.5 w-1.5 animate-pulse-soft rounded-full bg-gold" />
-            Drag to rotate · مدل سه‌بعدی تعاملی
-          </motion.div>
-        </div>
       </div>
 
       {/* scroll cue */}
