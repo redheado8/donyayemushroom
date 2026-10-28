@@ -69,8 +69,7 @@ export default function Hero({ onShop, onOrder }: { onShop: () => void; onOrder:
             className="mt-6 max-w-xl text-base leading-8 text-bone/70 md:text-lg md:leading-9"
           >
             در <span className="font-bold text-bone">«{SHOP.name}»</span> بهترین قارچ‌های برداشتِ روز و
-            اصیل‌ترین پنیرها را با وسواس انتخاب می‌کنیم. سفارش‌تان را آنلاین ثبت کنید و از طریق
-            واتساپ تحویل بگیرید — ساده، سریع و مطمئن.
+            اصیل‌ترین پنیرها را با وسواس انتخاب می‌کنیم. سفارش‌تان را آنلاین ثبت کنید و از طریق واتساپ هماهنگ کنید — ساده، سریع و مطمئن.
           </motion.p>
 
           <motion.div
