@@ -2,9 +2,6 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowLeft, Award, Leaf, MapPin, Sparkles, Star } from "lucide-react";
 import { SHOP } from "../data/products";
 
-const heroMushroomImage = "data:image/webp;base64,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";
-
-
 const fadeUp = {
   hidden: { opacity: 0, y: 34 },
   show: (d: number = 0) => ({
@@ -36,9 +33,9 @@ export default function Hero({ onShop, onOrder }: { onShop: () => void; onOrder:
         </span>
       </div>
 
-      <div className="relative mx-auto grid max-w-7xl gap-6 px-5 pb-28 pt-28 md:grid-cols-2 md:items-center md:px-10 md:pt-32 lg:min-h-[100svh]">
+      <div className="relative mx-auto flex min-h-[88svh] max-w-5xl flex-col items-center justify-center px-5 pb-28 pt-28 text-center md:px-10 md:pt-32">
         {/* copy */}
-        <motion.div style={{ y: yText, opacity }} className="relative z-10 order-2 md:order-1">
+        <motion.div style={{ y: yText, opacity }} className="relative z-10 w-full">
           <motion.div variants={fadeUp} initial="hidden" animate="show" custom={0.05}>
             <span className="inline-flex items-center gap-2 rounded-full border border-gold/40 bg-white/5 px-4 py-1.5 text-xs font-medium tracking-wide text-gold-light backdrop-blur">
               <Sparkles className="h-3.5 w-3.5" />
@@ -131,9 +128,6 @@ export default function Hero({ onShop, onOrder }: { onShop: () => void; onOrder:
           </motion.div>
         </motion.div>
 
-        <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.25 }} className="relative order-1 mx-auto flex h-[34svh] w-full max-w-xl items-center justify-center overflow-hidden rounded-[2rem] md:order-2 md:h-[58vh] md:rounded-[2.5rem]" aria-label="تصویر قارچ دکمه‌ای دنیای قارچ">
-          <img src={heroMushroomImage} alt="قارچ دکمه‌ای کرم‌رنگ روی زمینهٔ سبز جنگلی" className="h-full w-full object-cover" loading="eager" decoding="async" fetchPriority="high" />
-        </motion.div>
       </div>
 
       {/* scroll cue */}
