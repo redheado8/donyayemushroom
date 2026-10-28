@@ -101,7 +101,7 @@ export default function Hero({ onShop, onOrder }: { onShop: () => void; onOrder:
           >
             {[
               { icon: Leaf, top: "۱۰۰٪ تازه", sub: "برداشت روزانه" },
-              { icon: Award, top: "+۸ سال", sub: "اعتماد محله" },
+              { icon: Award, top: "+۱ سال", sub: "اعتماد محله" },
               { icon: Star, top: "۴.۹ از ۵", sub: "رضایت مشتریان" },
             ].map(({ icon: Icon, top, sub }) => (
               <div key={sub} className="flex items-center gap-3">
