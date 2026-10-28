@@ -35,7 +35,7 @@ export default function Hero({ onShop, onOrder }: { onShop: () => void; onOrder:
 
       <div className="relative mx-auto grid min-h-[100svh] max-w-7xl grid-cols-1 items-center gap-6 px-5 pb-28 pt-28 md:grid-cols-2 md:px-10 md:pt-32">
         {/* copy */}
-        <motion.div style={{ y: yText, opacity }} className="relative z-10 w-full text-right md:col-start-1">
+        <motion.div style={{ y: yText, opacity }} className="relative z-10 order-2 w-full text-right md:order-1 md:col-start-1">
           <motion.div variants={fadeUp} initial="hidden" animate="show" custom={0.05}>
             <span className="inline-flex items-center gap-2 rounded-full border border-gold/40 bg-white/5 px-4 py-1.5 text-xs font-medium tracking-wide text-gold-light backdrop-blur">
               <Sparkles className="h-3.5 w-3.5" />
@@ -126,6 +126,25 @@ export default function Hero({ onShop, onOrder }: { onShop: () => void; onOrder:
             <MapPin className="h-4 w-4 text-gold" />
             {SHOP.addressFull} — مدیریت: {SHOP.owner}
           </motion.div>
+        </motion.div>
+
+        {/* Lightweight hero artwork: transparent WebP image, no 3D canvas */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.97, y: 12 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="relative order-1 mx-auto flex w-full max-w-xl items-center justify-center md:order-2 md:col-start-2"
+          aria-label="قارچ دکمه‌ای با تزئینات طلایی"
+        >
+          <img
+            src="/images/hero-mushroom.webp"
+            alt="قارچ دکمه‌ای کرم‌رنگ با تزئینات طلایی"
+            width="1536"
+            height="1024"
+            fetchPriority="high"
+            decoding="async"
+            className="h-auto w-full object-contain drop-shadow-[0_24px_45px_rgba(0,0,0,0.24)]"
+          />
         </motion.div>
 
       </div>
